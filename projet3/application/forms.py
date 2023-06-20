@@ -2,7 +2,7 @@ from django import forms
 from django_countries.fields import CountryField
 from .models import Joueur, Equipe
 from django_countries.widgets import CountrySelectWidget
-from .forms import JoueurForm, EquipeForm
+
 
 class JoueurForm(forms.ModelForm):
     class Meta:
