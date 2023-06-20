@@ -1,6 +1,9 @@
 from django.db import models
 import uuid
 import os
+from django_countries.fields import CountryField
+
+
 
 # ________________________________________________   // fonctions utilitaires //  ____________________________________________________________
 
@@ -12,3 +15,53 @@ def generate_unique_filename(instance, filename):
 
 #_____________________________________________________________________________________________________________________________________________
 
+
+class Continent(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+class Role(models.Model):
+    POSITION_CHOICES = [
+        ('att', 'Attaquant'),
+        ('mid', 'Milieu'),
+        ('def', 'Défenseur'),
+        ('gk', 'Gardien'),
+        ('sub', 'Remplaçant'),
+    ]
+
+    position = models.CharField(max_length=10, choices=POSITION_CHOICES)
+
+    def __str__(self):
+        return self.position
+
+class Equipe(models.Model):
+    name = models.CharField(max_length=100)
+    max_players = models.PositiveIntegerField(default=14)
+    country = CountryField()
+    image = models.ImageField(upload_to=generate_unique_filename)
+    continent = models.ForeignKey(Continent, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+class Joueur(models.Model):
+    GENDER_CHOICES = [
+        ('M', 'Homme'),
+        ('F', 'Femme'),
+    ]
+
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    age = models.PositiveIntegerField()
+    telephone = models.CharField(max_length=30)
+    email = models.EmailField()
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    country_of_origin = CountryField()
+    image = models.ImageField(upload_to=generate_unique_filename)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE)
+    equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
