@@ -11,3 +11,4 @@ def generate_unique_filename(instance, filename):
     return os.path.join(model_name, unique_filename) #pathjoin join les éléments en path(chemin: model_name/unqiuefilename.extension) -> db
 
 #_____________________________________________________________________________________________________________________________________________
+
