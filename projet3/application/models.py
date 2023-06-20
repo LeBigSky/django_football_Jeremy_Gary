@@ -61,7 +61,7 @@ class Joueur(models.Model):
     country_of_origin = CountryField()
     image = models.ImageField(upload_to=generate_unique_filename)
     role = models.ForeignKey(Role, on_delete=models.CASCADE)
-    equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE)
+    equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE, default=None, null=True, blank=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
