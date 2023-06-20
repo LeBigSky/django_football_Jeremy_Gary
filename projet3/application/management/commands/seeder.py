@@ -38,40 +38,41 @@ class Command(BaseCommand):
           
 
         euro = Continent.objects.get(name='Europe')
+        
         equipe_data = [
             {
                 'name': 'Real Madrid',
                 'max_players': 14,
                 'country': 'Espagne',
-                'image': 'equipes/equipes/real_madrid.jpg',
+                'image': 'equipe/real_madrid.jpg',
                 'continent': euro,
             },
             {
                 'name': 'Manchester City',
                 'max_players': 14,
                 'country': 'Angleterre',
-                'image': 'equipes/Manchester-city.jpg',
+                'image': 'equipe/Manchester-city.jpg',
                 'continent': euro,
             },
             {
                 'name': 'Bayern de Munich',
                 'max_players': 14,
                 'country': 'Allemagne',
-                'image': 'equipes/Bayern.jpg',
+                'image': 'equipe/Bayern.jpg',
                 'continent': euro,
             },
             {
                 'name': 'PSG',
                 'max_players': 14,
                 'country': 'France',
-                'image': 'equipes/PSG.jpg',
+                'image': 'equipe/PSG.jpg',
                 'continent': euro,
             },
             {
                 'name': 'Club de Brugge',
                 'max_players': 14,
                 'country': 'Belgique',
-                'image': 'equipes/Brugge.jpg',
+                'image': 'equipe/Brugge.jpg',
                 'continent': euro,
             },
         ]

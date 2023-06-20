@@ -54,9 +54,9 @@ class Joueur(models.Model):
 
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    age = models.PositiveIntegerField()
+    age = models.PodsitiveIntegerField()
     telephone = models.CharField(max_length=30)
-    email = models.EmailField()
+    email = models.EmailFiel()
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     country_of_origin = CountryField()
     image = models.ImageField(upload_to=generate_unique_filename)
