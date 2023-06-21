@@ -1,0 +1,8 @@
+<section>
+    <h1>Joueuses sans équipes</h1>
+    <ul>
+        {% for femme in femmes_sans_equipe %}
+            <li>{{femme.first_name}} {{femme.last_name}} </li>
+        {% endfor %}
+    </ul>
+</section>
