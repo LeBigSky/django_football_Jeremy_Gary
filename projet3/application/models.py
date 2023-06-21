@@ -42,6 +42,8 @@ class Equipe(models.Model):
     country = CountryField(max_length=100)
     image = models.ImageField(upload_to=generate_unique_filename)
     continent = models.ForeignKey(Continent, on_delete=models.CASCADE)
+    man= models.BooleanField(null=True)
+    woman= models.BooleanField(null=True)
 
     def __str__(self):
         return self.name
