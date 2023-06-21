@@ -1,18 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<section>
-   <h1>Section 1</h1>
-</section>
-<section>
-    <h1>Section 2</h1>
- </section>
- <section>
-    <h1>Section 3</h1>
- </section>
- <section>
-    <h1>Section 4</h1>
- </section>
+{% include "app/partials/teams_full.html" %}
+{% include "app/partials/teams_not_full.html" %}
+{% include "app/partials/free_players.html" %}
+{% include "app/partials/not_free_players.html" %}
+
  <section>
     <h1>Section 5</h1>
  </section>

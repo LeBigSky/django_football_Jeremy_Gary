@@ -1,0 +1,8 @@
+<section>
+    <h1>Joueurs libres</h1>
+    <ul>
+        {% for joueur in joueurs_libres %}
+            <li>{{joueur.first_name}} {{joueur.last_name}} </li>
+        {% endfor %}
+    </ul>
+</section>
