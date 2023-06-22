@@ -3,14 +3,28 @@
     position: relative;
     width: 300px;
     height: 485px;
-    background-image: url(https://selimdoyranli.com/cdn/fut-player-card/img/card_bg.png);
+    background-image: url(./logo/gold68.png);
     background-position: center center;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     padding: 3.8rem 0;
     z-index: 2;
-    transition: 200ms ease-in;
+    transition: 200ms ease-out;
 }
+
+.equipe {
+    transition: 200ms ease-out;
+}
+
+.equipe:hover, .fut-player-card:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.show-player {
+    text-decoration: none;
+}
+
 .fut-player-card .player-card-top {
     position: relative;
     display: flex;

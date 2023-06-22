@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <img src="{% static joueur.image.url %}" alt="">
+    <h1>{{joueur.first_name}} {{joueur.last_name}}</h1>
+{% endblock content %}
