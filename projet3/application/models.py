@@ -2,7 +2,7 @@ from django.db import models
 import uuid
 import os
 from django_countries.fields import CountryField
-
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 # ________________________________________________   // fonctions utilitaires //  ____________________________________________________________
@@ -42,6 +42,8 @@ class Equipe(models.Model):
     country = CountryField(max_length=100)
     image = models.ImageField(upload_to=generate_unique_filename)
     continent = models.ForeignKey(Continent, on_delete=models.CASCADE)
+    man= models.BooleanField(null=True)
+    woman= models.BooleanField(null=True)
 
     def __str__(self):
         return self.name
@@ -61,7 +63,28 @@ class Joueur(models.Model):
     country_of_origin = CountryField()
     image = models.ImageField(upload_to=generate_unique_filename)
     role = models.ForeignKey(Role, on_delete=models.CASCADE)
-    equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE)
+    equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE, default=None, null=True, blank=True)
+    vitesse = models.PositiveIntegerField(
+        validators=[MinValueValidator(30), MaxValueValidator(99)]
+    )
+    tir = models.PositiveIntegerField(
+        validators=[MinValueValidator(30), MaxValueValidator(99)]
+    )
+    passes = models.PositiveIntegerField(
+        validators=[MinValueValidator(30), MaxValueValidator(99)]
+    )
+    physique = models.PositiveIntegerField(
+        validators=[MinValueValidator(30), MaxValueValidator(99)]
+    )
+    defense = models.PositiveIntegerField(
+        validators=[MinValueValidator(30), MaxValueValidator(99)]
+    )
+    dribble = models.PositiveIntegerField(
+        validators=[MinValueValidator(30), MaxValueValidator(99)]
+    )
+    moyenne = models.PositiveIntegerField(
+        validators=[MinValueValidator(30), MaxValueValidator(99)]
+    )
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
