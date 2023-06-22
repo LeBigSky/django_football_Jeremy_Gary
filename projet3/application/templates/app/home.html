@@ -1,22 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
-<section>
-   <h1>Section 1</h1>
-</section>
-<section>
-    <h1>Section 2</h1>
- </section>
- <section>
-    <h1>Section 3</h1>
- </section>
- <section>
-    <h1>Section 4</h1>
- </section>
- <section>
-    <h1>Section 5</h1>
- </section>
- <section>
-    <h1>Section 6</h1>
- </section>
+{% include "app/partials/teams_full.html" %}
+{% include "app/partials/teams_not_full.html" %}
+{% include "app/partials/free_players.html" %}
+{% include "app/partials/not_free_players.html" %}
+{% include "app/partials/european_teams.html" %}
+{% include "app/partials/other_teams.html" %}
+{% include "app/partials/free_women.html" %}
+{% include "app/partials/men_in_team.html" %}
+
 {% endblock content %}
