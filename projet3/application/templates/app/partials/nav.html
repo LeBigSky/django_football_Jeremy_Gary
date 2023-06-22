@@ -1,22 +1,45 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg bg-warning">
+<nav class="navbar navbar-expand-lg sticky-top" style="z-index:1">
     <div class="container-fluid">
-    <a class="navbar-brand" href="#"><img src="{% static 'logo/futcheboll.png' %}" style="max-width:125px" alt=""></a>
+    {% comment %} <a class="navbar-brand" href="#"><img src="{% static 'logo/futcheboll.png' %}" style="max-width:125px" alt=""></a> {% endcomment %}
+    {% comment %} <a class="navbar-brand" href="#"><img src="{% static 'logo/ultimes2.png' %}" style="max-width:350px" alt=""></a> {% endcomment %}
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item text-white">
-            <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+            <a class="nav-link active text-warning" aria-current="page" href="#">Ultime Random 2023</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="#"></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
+          <i class="bi bi-trophy-fill"></i>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Ultime Leagues
+            </a>
+            <ul class="dropdown-menu bg-info">
+              <li><a class="dropdown-item" href="#">League Female</a></li>
+              <li><a class="dropdown-item" href="#">League Male</a></li>
+              <li><a class="dropdown-item" href="#">League Mixte</a></li>
+            </ul>
           </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Players
+            </a>
+            <ul class="dropdown-menu bg-info">
+              <li><a class="dropdown-item" href="#">Females Players</a></li>
+              <li><a class="dropdown-item" href="#">Males Players</a></li>
+            </ul>
+          </li>
+          <a class="navbar-brand" href="#" style="position:relative; left:20rem;"><img src="{% static 'logo/ultimes2.png' %}" style="max-width:400px" alt=""></a>
         </ul>
+        <li class="nav-item text-white">
+          <a class="active text-warning" aria-current="page" href="{% url 'back' %}">Log | In</a>
+        </li>
       </div>
     </div>
   </nav>

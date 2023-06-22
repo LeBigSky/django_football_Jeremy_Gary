@@ -1,19 +1,50 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
     {% load bootstrap5 %} 
     {% bootstrap_css %}
     {% bootstrap_javascript %}
-    {% load static %}
+   
+    <style>
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Ratio 16:9 */
+            height: 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+   
     {% include 'app/partials/nav.html' %}
+   
+    {% if request.path == '/' %}
+    <video width="100%" height="auto" autoplay loop muted playsinline style="position:relative; bottom:150px; z-index:-1">
+        <source src="{% static 'uefa.mp4' %}" type="video/mp4">
+    </video>
+    {% endif %}
     {% block content %}
-    
     {% endblock content %}
+
     {% include 'app/partials/footer.html' %}
 </body>
 </html>

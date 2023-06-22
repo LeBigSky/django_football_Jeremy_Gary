@@ -7,7 +7,8 @@ from django_countries.widgets import CountrySelectWidget
 class JoueurForm(forms.ModelForm):
     class Meta:
         model = Joueur
-        fields = ['first_name', 'last_name', 'age', 'telephone', 'email', 'gender', 'country_of_origin', 'image', 'role', 'equipe']
+        fields = '__all__'
+        exclude = ('moyenne',)
         widgets = {
             'country_of_origin': CountrySelectWidget(),
         }
@@ -15,7 +16,8 @@ class JoueurForm(forms.ModelForm):
 class EquipeForm(forms.ModelForm):
     class Meta:
         model = Equipe
-        fields = ['name', 'max_players', 'country', 'continent']
+        fields = '__all__'
+        exclude=('max_players',)
         widgets = {
             'country': CountrySelectWidget(),
         }

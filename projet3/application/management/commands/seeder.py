@@ -209,7 +209,7 @@ class Command(BaseCommand):
 
         # Limites pour chaque rôle
         max_attaquants = 3
-        max_defenseurs = 5
+        max_defenseurs = 3
         max_milieux = 3
         max_gardiens = 2
         max_remplacants = 3
