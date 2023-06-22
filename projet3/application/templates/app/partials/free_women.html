@@ -1,8 +1,57 @@
+{% load static %}
 <section>
     <h1>Joueuses sans équipes</h1>
-    <ul>
-        {% for femme in femmes_sans_equipe %}
-            <li>{{femme.first_name}} {{femme.last_name}} </li>
-        {% endfor %}
-    </ul>
+    <div class="row row-cols-5 d-flex justify-content-evenly mx-0">
+    {% for femme in femmes_sans_equipe %}
+    <!-- *** fut-player-card ***-->
+    <div class="fut-player-card">
+        <!-- Player Card Top-->
+        <div class="player-card-top">
+            <div class="player-master-info">
+                <div class="player-rating"><span>97</span></div>
+                <div class="player-position"><span>{{femme.role}}</span></div>
+                <div class="player-club">
+                    <img src={% if femme.equipe %}
+                    "{% static femme.equipe.image.url %}"
+                    {% else %}
+                    "{% static 'logo/freeplayer.png' %}"
+                    {% endif %} 
+                    alt="{{femme.equipe}}" draggable="false" />
+                </div>
+                <div class="player-nation"><img src="{{femme.country_of_origin.flag}}" alt="{{femme.country_of_origin.name}}"></div>
+            </div>
+            <div class="player-picture"><img src="{% static femme.image %}"  alt="{{femme.first_name}} {{femme.last_name}}" draggable="false" style="object-fit:cover; transform:scale(1.2); object-position: top" />
+            </div>
+        </div><!-- Player Card Bottom-->
+        <div class="player-card-bottom">
+            <div class="player-info">
+                <!-- Player Name-->
+                <div class="player-name"><span>{{femme.first_name|truncatechars:12}} {{femme.last_name}}</span></div><!-- Player Features-->
+                <div class="player-features">
+                    <div class="player-features-col"><span>
+                            <div class="player-feature-value">{{femme.vitesse}}</div>
+                            <div class="player-feature-title">PAC</div>
+                        </span><span>
+                            <div class="player-feature-value">{{femme.tir}}</div>
+                            <div class="player-feature-title">SHO</div>
+                        </span><span>
+                            <div class="player-feature-value">{{femme.passes}}</div>
+                            <div class="player-feature-title">PAS</div>
+                        </span></div>
+                    <div class="player-features-col"><span>
+                            <div class="player-feature-value">{{femme.dribble}}</div>
+                            <div class="player-feature-title">DRI</div>
+                        </span><span>
+                            <div class="player-feature-value">{{femme.defense}}</div>
+                            <div class="player-feature-title">DEF</div>
+                        </span><span>
+                            <div class="player-feature-value">{{femme.physique}}</div>
+                            <div class="player-feature-title">PHY</div>
+                        </span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+  </div>
 </section>

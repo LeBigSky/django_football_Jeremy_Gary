@@ -1,8 +1,58 @@
+{% load static %}
+
 <section>
     <h1>Joueurs avec équipe</h1>
-    <ul>
-        {% for joueur in joueurs_non_libres %}
-            <li>{{joueur.first_name}} {{joueur.last_name}} - {{joueur.equipe}} </li>
-        {% endfor %}
-    </ul>
+    <div class="row row-cols-5 d-flex justify-content-evenly mx-0">
+    {% for joueur in joueurs_non_libres %}
+    <!-- *** fut-player-card ***-->
+    <div class="fut-player-card">
+        <!-- Player Card Top-->
+        <div class="player-card-top">
+            <div class="player-master-info">
+                <div class="player-rating"><span>97</span></div>
+                <div class="player-position"><span>{{joueur.role}}</span></div>
+                <div class="player-club">
+                    <img src={% if joueur.equipe %}
+                    "{% static joueur.equipe.image.url %}"
+                    {% else %}
+                    "{% static 'logo/freeplayer.png' %}"
+                    {% endif %} 
+                    alt="{{joueur.equipe}}" draggable="false" />
+                </div>
+                <div class="player-nation"><img src="{{joueur.country_of_origin.flag}}" alt="{{joueur.country_of_origin.name}}"></div>
+            </div>
+            <div class="player-picture"><img src="{% static joueur.image %}"  alt="{{joueur.first_name}} {{joueur.last_name}}" draggable="false" style="object-fit:cover; transform:scale(1.2); object-position: top" />
+            </div>
+        </div><!-- Player Card Bottom-->
+        <div class="player-card-bottom">
+            <div class="player-info">
+                <!-- Player Name-->
+                <div class="player-name"><span>{{joueur.first_name|truncatechars:12}} {{joueur.last_name}}</span></div><!-- Player Features-->
+                <div class="player-features">
+                    <div class="player-features-col"><span>
+                            <div class="player-feature-value">{{joueur.vitesse}}</div>
+                            <div class="player-feature-title">PAC</div>
+                        </span><span>
+                            <div class="player-feature-value">{{joueur.tir}}</div>
+                            <div class="player-feature-title">SHO</div>
+                        </span><span>
+                            <div class="player-feature-value">{{joueur.passes}}</div>
+                            <div class="player-feature-title">PAS</div>
+                        </span></div>
+                    <div class="player-features-col"><span>
+                            <div class="player-feature-value">{{joueur.dribble}}</div>
+                            <div class="player-feature-title">DRI</div>
+                        </span><span>
+                            <div class="player-feature-value">{{joueur.defense}}</div>
+                            <div class="player-feature-title">DEF</div>
+                        </span><span>
+                            <div class="player-feature-value">{{joueur.physique}}</div>
+                            <div class="player-feature-title">PHY</div>
+                        </span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+  </div>
 </section>

@@ -21,7 +21,7 @@ def home(request):
     equipes_autre = equipes.exclude(continent_id=4)
 
     femmes_sans_equipe = joueurs.filter(gender='F', equipe_id__isnull=True).order_by('?')[:5]
-    hommes_avec_equipe = joueurs.filter(gender='M', equipe_id__isnull=False)[:5]
+    hommes_avec_equipe = joueurs.filter(gender='M', equipe_id__isnull=False).order_by('?')[:5]
 
     context = locals()
     return render(request, "app/home.html", context)
