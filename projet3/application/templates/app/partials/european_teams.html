@@ -6,7 +6,7 @@
     {% for equipe in equipes_euro %}
         <div class="equipe text-center position-relative">
             <img src="{% static 'logo/fanion.png' %}" alt="" style="max-width: 100%; position: relative; filter: brightness(0.8)">
-            <img src="{% static equipe.image.url %}" alt="" style="width: 55%; position: absolute; top:50%; left:50%; transform: translate(-50%, -70%)">
+            <img src="{{  equipe.image.url  }}" alt="" style="width: 55%; position: absolute; top:50%; left:50%; transform: translate(-50%, -70%)">
             <span style="width: 100%; position: absolute; bottom: 18%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: bold; font-size: 1.2rem">{{equipe.name}}</span>
         </div>
     {% endfor %}

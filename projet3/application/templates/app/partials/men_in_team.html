@@ -11,10 +11,10 @@
             <div class="player-master-info">
                 <div class="player-rating"><span>97</span></div>
                 <div class="player-position"><span>{{homme.role}}</span></div>
-                <div class="player-club"><img src="{% static homme.equipe.image.url %}" alt="{{homme.equipe}}" draggable="false" /></div>
+                <div class="player-club"><img src="{{ homme.equipe.image.url }}" alt="{{ homme.equipe  }}" draggable="false" /></div>
                 <div class="player-nation"><img src="{{homme.country_of_origin.flag}}" alt="{{homme.country_of_origin.name}}"></div>
             </div>
-            <div class="player-picture"><img src="{% static homme.image %}"  alt="{{homme.first_name}} {{homme.last_name}}" draggable="false" style="object-fit:cover; transform:scale(1.2); object-position: top" />
+            <div class="player-picture"><img src="{{ homme.image.url }}"  alt="{{homme.first_name}} {{homme.last_name}}" draggable="false" style="object-fit:cover; transform:scale(1.2); object-position: top" />
             </div>
         </div><!-- Player Card Bottom-->
         <div class="player-card-bottom">
