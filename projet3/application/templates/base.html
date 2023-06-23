@@ -8,6 +8,7 @@
     {% load bootstrap5 %} 
     {% bootstrap_css %}
     {% bootstrap_javascript %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
    
     <style>
         .video-container {
@@ -28,13 +29,12 @@
 </head>
 <body>
     {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-   
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
     {% include 'app/partials/nav.html' %}
    
     {% if request.path == '/' %}

@@ -108,7 +108,7 @@ class Command(BaseCommand):
                 'max_players': 14,
                 'country': 'Australie',
                 'image': 'equipe/sydney.png',
-                'continent': afro,
+                'continent': ocean,
                 'man': False,
                 'woman': True,
             },

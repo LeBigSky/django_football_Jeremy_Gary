@@ -60,7 +60,7 @@ class Joueur(models.Model):
     telephone = models.CharField(max_length=30)
     email = models.EmailField()
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-    country_of_origin = CountryField()
+    country_of_origin = CountryField(countries_flag_url="https://www.worldatlas.com/r/w425/img/flag/{code}-flag.jpg")
     image = models.ImageField(upload_to=generate_unique_filename)
     role = models.ForeignKey(Role, on_delete=models.CASCADE)
     equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE, default=None, null=True, blank=True)
