@@ -105,3 +105,25 @@ def createTeam(request):
         form = EquipeForm()    
     context = locals()
     return render(request, "backend/teams/create.html", context)
+
+def deleteTeam(request, id):
+    team=Equipe.objects.get(id=id)
+    team.delete()
+    return redirect('team_editor')
+
+def allteams(request):
+    equipes=Equipe.objects.all()
+    context=locals()
+    return render(request, "backend/teams/allteams.html", context)
+
+def updateTeam(request, id):
+    team=Equipe.objects.get(id=id)
+    form=EquipeForm(instance=team)
+    if request.method == 'POST':
+        form = EquipeForm(request.POST, request.FILES, instance=team)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Bravo !, l'équipe a été ajouté.")
+            return redirect('back')  
+    context= locals()
+    return render(request, "backend/teams/update.html", context)

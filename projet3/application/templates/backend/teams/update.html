@@ -1,0 +1,20 @@
+{% extends 'backend.html' %}
+
+{% block content %}
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+  <h1>Update Team</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">Submit</input>
+  </form>
+
+<a href="{% url 'delete_team' team.id %}"><button>DELETE</button></a>
+{% endblock %}
