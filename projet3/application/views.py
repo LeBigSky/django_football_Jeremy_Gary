@@ -4,6 +4,8 @@ from .models import Joueur, Continent, Equipe, Role
 from .forms import JoueurForm, EquipeForm
 from django.contrib import messages
 from django.db.models import Count
+import os
+from django.conf import settings
 
 
 # Create your views here.
@@ -127,3 +129,66 @@ def updateTeam(request, id):
             return redirect('back')  
     context= locals()
     return render(request, "backend/teams/update.html", context)
+
+def allplayers(request):
+    players=Joueur.objects.all()
+    context=locals()
+    return render(request, "backend/players/allplayers.html", context)
+
+def deletePlayer(request, id):
+     joueur = Joueur.objects.get(id=id)
+
+    # Vérification de la longueur de l'URL de l'image
+     if len(joueur.image.name) > 20:
+        # Chemin complet vers l'image
+        image_path = os.path.join(settings.MEDIA_ROOT, joueur.image.name)
+
+        # Vérification si le fichier existe avant de le supprimer
+        if os.path.exists(image_path):
+            # Suppression du fichier
+            os.remove(image_path)
+
+     joueur.delete()
+     return redirect('player_editor')
+
+def updatePlayer(request, id):
+    joueur = Joueur.objects.get(id=id)
+    form = JoueurForm(instance=joueur)
+
+    if request.method == 'POST':
+        form = JoueurForm(request.POST, request.FILES, instance=joueur)
+        if form.is_valid():
+            equipe = form.cleaned_data['equipe']
+            role = form.cleaned_data['role']
+            gender = form.cleaned_data['gender']
+
+            # Vérification de l'équipe complète, sauf pour l'équipe du joueur en cours d'édition
+            if equipe.joueur_set.count() >= equipe.max_players and equipe != joueur.equipe:
+                messages.error(request, "Désolé, cette équipe est déjà complète.")
+                return redirect(request.META.get('HTTP_REFERER'))
+
+            # Vérification du nombre de joueurs par rôle, sauf pour le joueur en cours d'édition
+            if equipe.joueur_set.filter(role=role).count() >= 3 and joueur not in equipe.joueur_set.all():
+                messages.error(request, "Désolé, plus de place pour ce rôle.")
+                return redirect(request.META.get('HTTP_REFERER'))
+
+            # Vérification du nombre de gardiens, sauf pour le joueur en cours d'édition
+            if role.position == 'gk' and equipe.joueur_set.filter(role__position='gk').count() >= 2 and joueur not in equipe.joueur_set.all():
+                messages.error(request, "Désolé, il y a déjà 2 gardiens dans cette équipe.")
+                return redirect(request.META.get('HTTP_REFERER'))
+
+            # Vérification du genre en fonction de l'équipe
+            if equipe.man and not equipe.woman and gender != 'M':
+                messages.error(request, "Le genre doit être homme pour cette équipe.")
+                return redirect(request.META.get('HTTP_REFERER'))
+
+            if equipe.woman and not equipe.man and gender != 'F':
+                messages.error(request, "Le genre doit être femme pour cette équipe.")
+                return redirect(request.META.get('HTTP_REFERER'))
+
+            form.save()
+            messages.success(request, "Bravo ! Le joueur a été modifié.")
+            return redirect('back')
+
+    context = locals()
+    return render(request, "backend/players/update.html", context)

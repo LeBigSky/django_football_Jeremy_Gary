@@ -18,8 +18,11 @@ urlpatterns = [
     path('player/create/', views.createJoueur, name="create_joueur"),
     path('team/create/', views.createTeam, name="create_team"),
     path('team/editor/', views.allteams, name="team_editor"),
+    path('player/editor/', views.allplayers, name="player_editor"),
     path('team/update/<int:id>', views.updateTeam, name="update_team"),
+    path('player/update/<int:id>', views.updatePlayer, name="update_player"),
     path('delete/team/<int:id>', views.deleteTeam, name="delete_team"),
+    path('delete/player/<int:id>/', views.deletePlayer, name="delete_player")
   
 ] 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

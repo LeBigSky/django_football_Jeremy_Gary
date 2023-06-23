@@ -7,12 +7,21 @@
     {% bootstrap_javascript %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
     <title>Document</title>
 </head>
 <body>
-    {% include "backend/partials/navbar.html" %}
-    {% block content %}
     
+    {% include "backend/partials/navbar.html" %}
+    
+    {% block content %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
     {% endblock content %}
 </body>
 </html>

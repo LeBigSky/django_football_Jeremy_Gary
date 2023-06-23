@@ -82,7 +82,7 @@ class Joueur(models.Model):
     dribble = models.PositiveIntegerField(
         validators=[MinValueValidator(30), MaxValueValidator(99)]
     )
-    moyenne = models.PositiveIntegerField(null=True, 
+    moyenne = models.PositiveIntegerField(null=True, default=0, 
         validators=[MinValueValidator(30), MaxValueValidator(99)]
     )
 
