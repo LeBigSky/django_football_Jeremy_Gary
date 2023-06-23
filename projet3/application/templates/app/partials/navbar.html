@@ -1,0 +1,47 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg  {% if request.path == '/' %} position-fixed {% else %} position-fixed {% endif %} navbar-dark py-4 w-100" style="z-index: 100">
+  <div class="container-fluid">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
+      <ul class="navbar-nav mb-2 mb-lg-0 d-flex align-items-center" style="width:30%">
+        <li class="nav-item text-white">
+          <a class="nav-link active text-warning" aria-current="page" href="#">Ultime Random 2023</a>
+        </li>
+        <i class="bi bi-trophy-fill"></i>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Ultime Leagues </a>
+          <ul class="dropdown-menu bg-info">
+            <li><a class="dropdown-item" href="#">League Female</a></li>
+            <li><a class="dropdown-item" href="#">League Male</a></li>
+            <li><a class="dropdown-item" href="#">League Mixte</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Players </a>
+          <ul class="dropdown-menu bg-info">
+            <li><a class="dropdown-item" href="{% url 'hommes' %}">Males Players</a></li>
+            <li><a class="dropdown-item" href="{% url 'femmes' %}">Females Players</a></li>
+          </ul>
+        </li>
+      </ul>
+        <div class="logo">
+          <a class="navbar-brand" href="#"><img src="{% static 'logo/ultimes2.png' %}" style="max-width: 400px" alt="" /></a>
+        </div>
+      <div class="nav-item text-white text-end" style="width:30%">
+        <a class="active text-warning nav-link" href="{% url 'back' %}">Log | In</a>
+      </div>
+    </div>
+  </div>
+</nav>

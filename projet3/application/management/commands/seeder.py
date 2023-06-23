@@ -257,24 +257,36 @@ class Command(BaseCommand):
                 prenom = random.choice(prenoms)
                 image = random.choice(joueurs_images)
 
+
+             attributs = [
+                random.randint(75, 99) if role.position == 'att' else random.randint(50, 75),  # vitesse
+                random.randint(35, 65) if role.position == 'att' else random.randint(60, 99),  # defense
+                random.randint(75, 99) if role.position == 'att' else random.randint(60, 99),  # tir
+                random.randint(75, 99) if role.position == 'att' else random.randint(60, 99),  # passes
+                random.randint(75, 99) if role.position == 'att' else random.randint(60, 99),  # dribble
+                random.randint(75, 99) if role.position == 'att' else random.randint(60, 99)   # physique
+            ]
+
+             moyenne_attributs = sum(attributs) / len(attributs)
+
              joueur = Joueur.objects.create(
-                    first_name=prenom,
-                    last_name=nom,
-                    age=random.randint(18, 38),
-                    telephone=str(random.randint(10000000, 99999999)),
-                    email = f'{nom.lower()}.{prenom.lower()}@{equipe.name.replace(" ", "").lower()}.com' if equipe else f'{nom.lower()}.{prenom.lower()}@lebanc.com',
-                    gender=gender,
-                    country_of_origin=random.choice(countries),
-                    image=image,
-                    role=role,
-                    equipe=equipe,
-                    vitesse=random.randint(75, 99) if role.position == 'att' else random.randint(50, 75),
-                    tir=random.randint(75, 99) if role.position == 'att' else random.randint(60, 99),
-                    passes=random.randint(75, 99) if role.position == 'att' else random.randint(60, 99),
-                    physique=random.randint(75, 99) if role.position == 'att' else random.randint(60, 99),
-                    defense=random.randint(35, 65) if role.position == 'att' else random.randint(60, 99),
-                    dribble=random.randint(75, 99) if role.position == 'att' else random.randint(60, 99),
-                    moyenne=0  # À définir selon tes critères
-                )
+                first_name=prenom,
+                last_name=nom,
+                age=random.randint(18, 38),
+                telephone=str(random.randint(10000000, 99999999)),
+                email=f'{nom.lower()}.{prenom.lower()}@{equipe.name.replace(" ", "").lower()}.com' if equipe else f'{nom.lower()}.{prenom.lower()}@lebanc.com',
+                gender=gender,
+                country_of_origin=random.choice(countries),
+                image=image,
+                role=role,
+                equipe=equipe,
+                vitesse=attributs[0],
+                defense=attributs[1],
+                tir=attributs[2],
+                passes=attributs[3],
+                dribble=attributs[4],
+                physique=attributs[5],
+                moyenne=moyenne_attributs
+            )
 
              self.stdout.write(self.style.SUCCESS(f'Joueur {joueur.first_name} {joueur.last_name} créé.'))
