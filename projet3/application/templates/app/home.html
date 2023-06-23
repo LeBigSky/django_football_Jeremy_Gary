@@ -3,14 +3,31 @@
 {% block content %}
 
 
-<section id="hero" class="bg-black">
-    <video width="100%" height="auto" autoplay loop muted playsinline style="position:relative; ">
+<section id="hero" class="bg-black" style="height: 100dvh">
+    <video width="100%" height="100%" autoplay loop muted playsinline style="position:relative; object-fit: cover; object-position: top">
         <source src="{% static 'uefa.mp4' %}" type="video/mp4">
     </video>
 </section>
 
-<section>
-    <img src={% static 'bandet.png' %} alt="">
+<section style="background-image: url({% static 'retrospective.png' %}); background-size: cover; padding-block: 5rem;">
+    <div class="container d-flex justify-content-evenly fw-bold">
+        <div class="d-flex flex-column position-relative">
+            <i class="fa-solid fa-futbol position-absolute display-3 end-0"></i>
+            <span class="fs-1 text-white" style="z-index: 1">{{nb_joueurs}}</span> <span class="text-warning ms-4 fs-5">Joueurs</span>
+        </div>
+        <div class="d-flex flex-column position-relative">
+            <i class="fa-solid fa-handshake position-absolute display-3 end-0"></i>
+            <span class="fs-1 text-white" style="z-index: 1">{{nb_joueurs_non_libres}}</span> <span class="text-warning ms-4 fs-5">Joueurs engagés</span>
+        </div>
+        <div class="d-flex flex-column position-relative">
+            <i class="fa-solid fa-people-group position-absolute display-3 end-0"></i>
+            <span class="fs-1 text-white" style="z-index: 1">{{nb_equipes}}</span> <span class="text-warning ms-4 fs-5">Equipes</span>
+        </div>
+        <div class="d-flex flex-column position-relative">
+            <i class="fa-solid fa-trophy position-absolute display-3 end-0"></i>
+            <span class="fs-1 text-white" style="z-index: 1">3</span> <span class="text-warning ms-4 fs-5">Ligues</span>
+        </div>
+    </div>
 </section>
 
 <div class="equipes position-relative">

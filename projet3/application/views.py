@@ -12,6 +12,8 @@ def home(request):
     form = JoueurForm(request.POST)
     equipes = Equipe.objects.all()
 
+    
+
     equipes_remplies = Equipe.objects.annotate(num_joueurs=Count('joueur')).filter(num_joueurs=14)
 
     equipes_non_remplies = Equipe.objects.annotate(num_joueurs=Count('joueur')).filter(num_joueurs__lt=14)[:2]
@@ -25,6 +27,9 @@ def home(request):
     femmes_sans_equipe = joueurs.filter(gender='F', equipe_id__isnull=True).order_by('?')[:5]
     hommes_avec_equipe = joueurs.filter(gender='M', equipe_id__isnull=False).order_by('?')[:5]
 
+    nb_joueurs = joueurs.count()
+    nb_equipes = equipes.count()
+    nb_joueurs_non_libres = joueurs.filter(equipe_id__isnull=False).count()
 
     context = locals()
     return render(request, "app/home.html", context)
