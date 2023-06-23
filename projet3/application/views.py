@@ -25,6 +25,7 @@ def home(request):
     femmes_sans_equipe = joueurs.filter(gender='F', equipe_id__isnull=True).order_by('?')[:5]
     hommes_avec_equipe = joueurs.filter(gender='M', equipe_id__isnull=False).order_by('?')[:5]
 
+
     context = locals()
     return render(request, "app/home.html", context)
 
@@ -38,6 +39,16 @@ def team(request, id):
     equipe = Equipe.objects.get(id=id)
     context = locals()
     return render(request, "app/pages/show_team.html", context)
+
+def male_players(request):
+    joueurs_hommes = Joueur.objects.all().filter(gender='M').order_by('equipe_id')
+    context = locals()
+    return render(request, "app/pages/male_players.html", context)
+
+def female_players(request):
+    joueurs_femmes = Joueur.objects.all().filter(gender='F')
+    context = locals()
+    return render(request, "app/pages/female_players.html", context)
 
 
 # /////////////////////////////// BACKEND  /////////////////////////

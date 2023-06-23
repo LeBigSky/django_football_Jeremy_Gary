@@ -2,6 +2,22 @@
 {% load static %}
 
 {% block content %}
-    <img src="{% static joueur.image.url %}" alt="">
-    <h1>{{joueur.first_name}} {{joueur.last_name}}</h1>
+<section class="position-relative" style="min-height: 100dvh; padding-top: 175px">
+    <video src={% static 'europa.mp4' %} autoplay muted loop style="position: absolute; right:0; bottom:0; width: 100%; height: 100%; object-fit:cover; z-index: -1"></video>
+
+    <div class="card mb-3 bg-transparent border-0" style="max-width: 100%;">
+        <div class="row g-0">
+            <div class="col-md-4" style="max-height: 650px">
+            <img src="{{joueur.image.url}}" class="img-fluid rounded-start h-100" alt="{{joueur.first_name}} {{joueur.last_name}}">
+            </div>
+            <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title text-white fs-1 text-uppercase">{{joueur.first_name}} {{joueur.last_name}}</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock content %}

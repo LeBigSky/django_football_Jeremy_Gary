@@ -1,6 +1,6 @@
 {% load static %}
 
-<nav class="navbar navbar-expand-lg sticky-top navbar-dark py-4" style="z-index: 100">
+<nav class="navbar navbar-expand-lg  {% if request.path == '/' %} position-fixed {% else %} position-fixed {% endif %} navbar-dark py-4 w-100" style="z-index: 100">
   <div class="container-fluid">
     <button
       class="navbar-toggler"
@@ -31,8 +31,8 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Players </a>
           <ul class="dropdown-menu bg-info">
-            <li><a class="dropdown-item" href="#">Females Players</a></li>
-            <li><a class="dropdown-item" href="#">Males Players</a></li>
+            <li><a class="dropdown-item" href="{% url 'hommes' %}">Males Players</a></li>
+            <li><a class="dropdown-item" href="{% url 'femmes' %}">Females Players</a></li>
           </ul>
         </li>
       </ul>
