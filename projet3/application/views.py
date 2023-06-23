@@ -83,7 +83,8 @@ def createJoueur(request):
                 if joueur_gender != 'F':
                     messages.error(request, "Désolé, le joueur doit être de genre féminin (F).")
                     return redirect('create_joueur')
-
+            
+            joueur.moyenne = (joueur.vitesse + joueur.physique + joueur.dribble + joueur.passes + joueur.tir + joueur.defense )/6
             joueur.save()
             messages.success(request, "Le joueur a été crée !")
             return redirect('/')
