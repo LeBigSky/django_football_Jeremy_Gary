@@ -17,18 +17,20 @@
 <video src={% static 'europa.mp4' %} autoplay muted loop style="position: absolute; bottom:0; right:0; width: 100%; height: 100%; object-fit:cover; z-index: -1"></video>
     <section id="full-teams" class="p-5">
         <h1 class="text-white">Equipes remplies</h1>
-        <div class="row row-cols-5 d-flex justify-content-evenly mx-0">
-        {% for equipe in equipes_remplies %}
-            <a href="{% url 'show_team' equipe.id %}" class="text-decoration-none">
-                <div class="equipe text-center d-flex flex-column align-items-center">
-                    <img src="{{equipe.image.url}}" alt="" style="width: 60%; filter:drop-shadow(0 0 5px white);">
-                    <span style="font-weight: bold; font-size: 1.2rem; text-shadow: 0 0 5px black" class="mt-4 text-light">{{equipe.name}}</span>
-                </div>
-            </a>
-            {% empty %}
-            <h3 class="text-white">Aucune équipe remplie</h3>
-        {% endfor %}
-      </div>
+        <div class="container">
+            <div class="row row-cols-5 d-flex justify-content-evenly mx-0">
+            {% for equipe in equipes_remplies %}
+                <a href="{% url 'show_team' equipe.id %}" class="text-decoration-none">
+                    <div class="equipe text-center d-flex flex-column align-items-center">
+                        <img src="{{equipe.image.url}}" alt="" style="width: 60%; filter:drop-shadow(0 0 5px white);">
+                        <span style="font-weight: bold; font-size: 1.2rem; text-shadow: 0 0 5px black" class="mt-4 text-light">{{equipe.name}}</span>
+                    </div>
+                </a>
+                {% empty %}
+                <h3 class="text-white">Aucune équipe remplie</h3>
+            {% endfor %}
+            </div>
+        </div>
     </section>
     
     <section id="not-full-teams" class="p-5">
