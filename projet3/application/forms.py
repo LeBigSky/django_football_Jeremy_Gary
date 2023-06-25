@@ -146,6 +146,3 @@ class EquipeForm(forms.ModelForm):
 
         if not man and not woman:
             raise forms.ValidationError("Veuillez sélectionner au moins une option : homme ou femme.")
-
-        if man and woman:
-            raise forms.ValidationError("Veuillez sélectionner une seule option : homme ou femme.")
