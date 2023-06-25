@@ -12,7 +12,7 @@
     <div class="equipes position-relative">
         <video src={% static 'europa.mp4' %} autoplay muted loop style="position: absolute; right: 0; bottom: 0; height:100%; z-index: -1"></video>
         <section style="background-image: url({% static 'leftduck.png' %}); background-size: contain; background-repeat: no-repeat; padding-block: 5rem;" class="my-5 p-5 position-relative">
-        <div class="container d-flex justify-content-evenly fw-bold">
+        <div class="container d-flex justify-content-evenly fw-bold py-5">
             <div class="d-flex flex-column position-relative">
                 <i class="fa-solid fa-futbol position-absolute display-3 end-0 text-secondary"></i>
                 <span class="fs-1 text-white" style="z-index: 1">{{nb_joueurs}}</span> <span class="text-warning ms-4 fs-5">Joueurs</span>
@@ -32,9 +32,9 @@
         </div>
     </section>
 
-        <section id="full-teams" class="p-5 my-5">
-            <h1 class="text-white my-5">Equipes remplies</h1>
-            <div class="container">
+        <section id="full-teams" class="p-5">
+            <h1 class="text-white ms-5 mt-4 mb-5 text-uppercase">Equipes remplies</h1>
+            <div class="container pt-5 mb-5">
                 <div class="row row-cols-md-5 d-flex justify-content-evenly mx-0">
                 {% for equipe in equipes_remplies %}
                     <a href="{% url 'show_team' equipe.id %}" class="text-decoration-none">
@@ -51,8 +51,8 @@
         </section>
     
         <section id="not-full-teams" class="p-5">
-            <h1 class="text-white my-5">Equipes non remplies</h1>
-            <div class="container">
+            <h1 class="text-white ms-5 mt-4 mb-5 text-uppercase">Equipes non remplies</h1>
+            <div class="container pt-5 mb-5">
                 <div class="row row-cols-md-5 d-flex justify-content-evenly mx-0">
                 {% for equipe in equipes_non_remplies %}
                     <a href={% url 'show_team' equipe.id %} class="text-decoration-none">
@@ -72,7 +72,7 @@
     <div class="position-relative">
         <video src={% static 'European_Union_Flag.mp4' %} autoplay muted loop style="position: absolute; z-index: -1; width: 100%; height: 100%; object-fit: cover"></video>
         <section id="european-teams" class="p-5 position-relative h-100 w-100">
-            <h1 class="text-white mb-5">Equipes européenes</h1>
+            <h1 class="text-white ms-5 mt-4 mb-5 text-uppercase">Equipes européenes</h1>
             <div class="container pt-5 mb-5">
                 <div class="row row-cols-md-5 d-flex justify-content-evenly mx-0">
                 {% for equipe in equipes_euro %}
@@ -90,7 +90,7 @@
     <div class="position-relative">
     <video src={% static 'onu_Flag.mp4' %} autoplay muted loop style="position: absolute; z-index: -1; width: 100%; height: 100%; object-fit: cover"></video>
         <section id="not-european-teams" class="p-5">
-            <h1 class="text-white my-5">Equipes hors Europe</h1>
+            <h1 class="text-white ms-5 mt-4 mb-5 text-uppercase">Equipes hors Europe</h1>
             <div class="container">
                 <div class="row row-cols-md-5 d-flex justify-content-evenly mx-0 py-5">
                 {% for equipe in equipes_autre %}
@@ -108,7 +108,7 @@
 
 <div style="background-image: url({% static 'logo/fondgradientpics.png' %}); background-size: cover">
     <section id="free-players" class="p-5">
-        <h1 class="my-5"><img src="{% static 'logo/freeplayer.png' %}" alt="" class="me-4" style="max-width: 100px">Joueurs et joueuses libres</h1>
+        <h1 class="my-5 text-uppercase"><img src="{% static 'logo/freeplayer.png' %}" alt="" class="me-4" style="max-width: 100px">Joueurs et joueuses libres</h1>
         <div class="row row-cols-5 d-flex justify-content-evenly mx-0">
         {% for joueur in joueurs_libres %}
         <!-- *** fut-player-card ***-->
@@ -167,7 +167,7 @@
     </section>
 
     <section id="not-free-players" class="p-5">
-        <h1 class="my-5"><img src="{% static 'logo/notfreeplayer.png' %}" alt="" class="me-4" style="max-width: 100px">Joueurs et joueuses avec équipe</h1>
+        <h1 class="my-5 text-uppercase"><img src="{% static 'logo/notfreeplayer.png' %}" alt="" class="me-4" style="max-width: 100px">Joueurs et joueuses avec équipe</h1>
         <div class="row row-cols-5 d-flex justify-content-evenly mx-0">
         {% for joueur in joueurs_non_libres %}
         <a href="{% url 'show_player' joueur.id %}" class="show-player" style="width: fit-content">
@@ -228,7 +228,7 @@
     </section>
 
     <section id="free-women" class="p-5">
-        <h1 class="my-5"><img src="{% static 'logo/freeplayer.png' %}" alt="" class="me-4" style="max-width: 100px">Joueuses sans équipe</h1>
+        <h1 class="my-5 text-uppercase"><img src="{% static 'logo/freeplayer.png' %}" alt="" class="me-4" style="max-width: 100px">Joueuses sans équipe</h1>
         <div class="row row-cols-5 d-flex justify-content-evenly mx-0">
         {% for femme in femmes_sans_equipe %}
         <a href="{% url 'show_player' femme.id %}" class="show-player" style="width: fit-content">
@@ -286,7 +286,7 @@
     </section>
 
     <section id="men-in-team" class="p-5">
-        <h1 class="my-5"><img src="{% static 'logo/notfreeplayer.png' %}" alt="" class="me-4" style="max-width: 100px">Joueurs avec équipe</h1>
+        <h1 class="my-5 text-uppercase"><img src="{% static 'logo/notfreeplayer.png' %}" alt="" class="me-4" style="max-width: 100px">Joueurs avec équipe</h1>
         <div class="row row-cols-5 d-flex justify-content-evenly mx-0">
             {% for homme in hommes_avec_equipe %}
             <a href="{% url 'show_player' homme.id %}" class="show-player" style="width: fit-content">
