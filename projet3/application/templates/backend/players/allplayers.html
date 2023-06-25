@@ -3,10 +3,10 @@
 {% block content %}
 <div style="background-image: url({% static 'logo/fondgradientpics.png' %}); background-size: cover">
 <section id="not-free-players" class="p-5">
-    <h1>Joueurs avec équipe</h1>
-    <div class="row row-cols-5 d-flex justify-content-evenly mx-0">
+    <h1 class="my-5 text-uppercase">Tous les joueurs inscrits</h1>
+    <div class="row row-cols-md-5 d-flex justify-content-evenly mx-0">
     {% for joueur in players %}
-    <a href="{% url 'update_player' joueur.id %}" class="show-player" style="width: fit-content">
+    <a href="{% url 'update_player' joueur.id %}" class="show-player mb-5" style="width: fit-content">
         <!-- *** fut-player-card ***-->
         <div class="fut-player-card">
             <!-- Player Card Top-->

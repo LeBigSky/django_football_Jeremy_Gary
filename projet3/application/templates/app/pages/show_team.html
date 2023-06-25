@@ -2,6 +2,90 @@
 {% load static %}
 
 {% block content %}
-<img src="{{equipe.image.url}}" alt="">
-<h1>{{equipe.name}}</h1>
+<section class="position-relative mb-5" style="min-height: calc( 100dvh - 142px ); padding-block: 100px">
+    <video src={% static 'europa.mp4' %} autoplay muted loop style="position: fixed; right:0; bottom:0; height: 80%; object-fit:cover; z-index: -1"></video>
+
+    <div class="card mb-3 bg-transparent border-0 fs-5" style="max-width: 100%; margin-inline: 7rem">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <div class="position-fixed">
+                    <img src="{{equipe.image.url}}" class="img-fluid rounded-start h-auto" alt="{{joueur.first_name}} {{joueur.last_name}}" style="max-width: 25vw">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <div class="title d-flex justify-content-between">
+                        <div class="d-flex gap-5 align-items-center text-uppercase text-white fw-bold">
+                            <h5 class="card-title  fs-1 mb-0">{{equipe.name}}</h5>
+                            <span>{{nb_joueurs}} / 14</span>
+                        </div>
+                    </div>
+                    
+                    <div class="list-group mt-5 pt-4">
+                    
+                    <div class="list-group-item d-flex align-items-center bg-transparent">
+                        <span class="badge bg-warning text-uppercase text-black">Gardiens</span>
+                    </div>
+                    {% for gardien in joueurs_gk %}
+                        <a href="{% url 'show_player' gardien.id %}" class="list-group-item list-group-item-action d-flex align-items-center bg-transparent link-light border-0" aria-current="true">
+                        <div class="img" style="width:120px">
+                            <img src="{{gardien.image.url}}" alt="{{gardien.first_name}} {{gardien.last_name}}" style="max-height: 100px; aspect-ratio: 1/1; object-fit: contain">
+                        </div>
+                            {{gardien.first_name}} {{gardien.last_name}}
+                        </a>
+                    {% endfor %}
+
+                    <div class="list-group-item d-flex align-items-center bg-transparent mt-5">
+                        <span class="badge bg-primary text-uppercase">Défenseurs</span>
+                    </div>
+                    {% for defenseur in joueurs_def %}
+                        <a href="{% url 'show_player' defenseur.id %}" class="list-group-item list-group-item-action d-flex align-items-center bg-transparent link-light border-0" aria-current="true">
+                        <div class="img" style="width:120px">
+                            <img src="{{defenseur.image.url}}" alt="{{defenseur.first_name}} {{defenseur.last_name}}" style="max-height: 100px; aspect-ratio: 1/1; object-fit: contain">
+                        </div>
+                            {{defenseur.first_name}} {{defenseur.last_name}}
+                        </a>
+                    {% endfor %}
+
+                    <div class="list-group-item d-flex align-items-center bg-transparent mt-5">
+                        <span class="badge bg-success text-uppercase">Milieux</span>
+                    </div>
+                    {% for milieu in joueurs_mid %}
+                        <a href="{% url 'show_player' milieu.id %}" class="list-group-item list-group-item-action d-flex align-items-center bg-transparent link-light border-0" aria-current="true">
+                        <div class="img" style="width:120px">
+                            <img src="{{milieu.image.url}}" alt="{{milieu.first_name}} {{milieu.last_name}}" style="max-height: 100px; aspect-ratio: 1/1; object-fit: contain">
+                        </div>
+                            {{milieu.first_name}} {{milieu.last_name}}
+                        </a>
+                    {% endfor %}
+
+                    <div class="list-group-item d-flex align-items-center bg-transparent mt-5">
+                        <span class="badge bg-danger text-uppercase">Attaquants</span>
+                    </div>
+                    {% for attaquant in joueurs_att %}
+                        <a href="{% url 'show_player' attaquant.id %}" class="list-group-item list-group-item-action d-flex align-items-center bg-transparent link-light border-0" aria-current="true">
+                        <div class="img" style="width:120px">
+                            <img src="{{attaquant.image.url}}" alt="{{attaquant.first_name}} {{attaquant.last_name}}" style="max-height: 100px; aspect-ratio: 1/1; object-fit: contain">
+                        </div>
+                            {{attaquant.first_name}} {{attaquant.last_name}}
+                        </a>
+                    {% endfor %}
+
+                    <div class="list-group-item d-flex align-items-center bg-transparent mt-5">
+                        <span class="badge bg-secondary text-uppercase">Remplaçants</span>
+                    </div>
+                    {% for sub in joueurs_sub %}
+                        <a href="{% url 'show_player' sub.id %}" class="list-group-item list-group-item-action d-flex align-items-center bg-transparent link-light border-0" aria-current="true">
+                        <div class="img" style="width:120px">
+                            <img src="{{sub.image.url}}" alt="{{sub.first_name}} {{sub.last_name}}" style="max-height: 100px; aspect-ratio: 1/1; object-fit: contain">
+                        </div>
+                            {{sub.first_name}} {{sub.last_name}}
+                        </a>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock content %}

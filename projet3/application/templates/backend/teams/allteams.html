@@ -1,20 +1,18 @@
 {% extends 'backend.html' %}
 {% load static %}
+
 {% block content %}
-<div class="equipes position-relative">
-    <video src={% static 'europa.mp4' %} autoplay muted loop style="position: absolute; right:0; bottom:0; width: 100%; height: 100%; object-fit:cover; z-index: -1"></video>
-        <section id="european-teams" class="p-5 position-relative w-100">
-            <div>
-                <h1 class="text-white mb-5"> ALL TEAMS </h1>
-            </div>
-            
-            <div class="container">
-                <div class="row row-cols-5 d-flex justify-content-evenly mx-0">
+    <div class="position-relative">
+    <video src={% static 'europa.mp4' %} autoplay muted loop style="position: absolute; right: 0; bottom: 0; height:100%; z-index: -1; object-fit: cover"></video>
+        <section id="european-teams" class="p-5 position-relative h-100 w-100">
+            <h1 class="text-white ms-5 mt-4 mb-5 text-uppercase">Toutes les équipes</h1>
+            <div class="container pt-5 mb-5">
+                <div class="row row-cols-md-5 d-flex justify-content-evenly mx-0">
                 {% for equipe in equipes %}
-                    <a href="{% url 'update_team' equipe.id %}" class="text-decoration-none">
+                    <a href="{% url 'update_team' equipe.id %}" class="text-decoration-none my-5">
                         <div class="equipe text-center d-flex flex-column align-items-center">
                             <img src="{{equipe.image.url}}" alt="" style="width: 60%;  filter:drop-shadow(0 0 5px white);">
-                            <span style="font-weight: bold; font-size: 1.2rem; text-shadow: 0 0 5px black" class="mt-4 text-light">{{equipe.name}}</span>
+                            <span style="font-weight: bold; font-size: 1.2rem; text-shadow: 0 0 7px black" class="mt-4 text-light">{{equipe.name}}</span>
                         </div>
                     </a>
                 {% endfor %}

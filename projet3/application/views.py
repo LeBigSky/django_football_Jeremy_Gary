@@ -14,6 +14,8 @@ def home(request):
     form = JoueurForm(request.POST)
     equipes = Equipe.objects.all()
 
+    
+
     equipes_remplies = Equipe.objects.annotate(num_joueurs=Count('joueur')).filter(num_joueurs=14)
 
     equipes_non_remplies = Equipe.objects.annotate(num_joueurs=Count('joueur')).filter(num_joueurs__lt=14)[:2]
@@ -27,6 +29,9 @@ def home(request):
     femmes_sans_equipe = joueurs.filter(gender='F', equipe_id__isnull=True).order_by('?')[:5]
     hommes_avec_equipe = joueurs.filter(gender='M', equipe_id__isnull=False).order_by('?')[:5]
 
+    nb_joueurs = joueurs.count()
+    nb_equipes = equipes.count()
+    nb_joueurs_non_libres = joueurs.filter(equipe_id__isnull=False).count()
 
     context = locals()
     return render(request, "app/home.html", context)
@@ -39,6 +44,13 @@ def player(request, id):
 
 def team(request, id):
     equipe = Equipe.objects.get(id=id)
+    joueurs_att = Joueur.objects.all().filter(equipe_id=id, role_id=1)
+    joueurs_mid = Joueur.objects.all().filter(equipe_id=id, role_id=2)
+    joueurs_def = Joueur.objects.all().filter(equipe_id=id, role_id=3)
+    joueurs_gk = Joueur.objects.all().filter(equipe_id=id, role_id=4)
+    joueurs_sub = Joueur.objects.all().filter(equipe_id=id, role_id=5)
+
+    nb_joueurs = Joueur.objects.all().filter(equipe_id=id).count()
     context = locals()
     return render(request, "app/pages/show_team.html", context)
 
@@ -48,9 +60,24 @@ def male_players(request):
     return render(request, "app/pages/male_players.html", context)
 
 def female_players(request):
-    joueurs_femmes = Joueur.objects.all().filter(gender='F')
+    joueurs_femmes = Joueur.objects.all().filter(gender='F').order_by('equipe_id')
     context = locals()
     return render(request, "app/pages/female_players.html", context)
+
+def male_league(request):
+    equipes = Equipe.objects.all().filter(man=1, woman=0)
+    context = locals()
+    return render(request, "app/pages/male_league.html", context)
+
+def female_league(request):
+    equipes = Equipe.objects.all().filter(man=0, woman=1)
+    context = locals()
+    return render(request, "app/pages/female_league.html", context)
+
+def mixte_league(request):
+    equipes = Equipe.objects.all().filter(man=1, woman=1)
+    context = locals()
+    return render(request, "app/pages/mixte_league.html", context)
 
 
 # /////////////////////////////// BACKEND  /////////////////////////
@@ -132,7 +159,7 @@ def updateTeam(request, id):
     return render(request, "backend/teams/update.html", context)
 
 def allplayers(request):
-    players=Joueur.objects.all()
+    players=Joueur.objects.all().order_by('equipe_id')
     context=locals()
     return render(request, "backend/players/allplayers.html", context)
 

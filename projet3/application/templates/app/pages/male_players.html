@@ -3,11 +3,11 @@
 
 {% block content %}
 <section id="male-players" class="p-5">
-        <h1>Joueurs hommes</h1>
+        <h1 class="text-white ms-5 mt-4 mb-5 text-uppercase">Joueurs hommes</h1>
         <div class="row row-cols-5 d-flex justify-content-evenly mx-0">
         {% for joueur in joueurs_hommes %}
         <!-- *** fut-player-card ***-->
-        <a href="{% url 'show_player' joueur.id %}" class="show-player" style="width: fit-content">
+        <a href="{% url 'show_player' joueur.id %}" class="show-player mb-5" style="width: fit-content">
             <div class="fut-player-card">
                 <!-- Player Card Top-->
                 <div class="player-card-top">
