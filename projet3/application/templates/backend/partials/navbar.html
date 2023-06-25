@@ -1,39 +1,47 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg bg-dark sticky-top" style="z-index:1">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="{% static 'logo/ultimes2.png' %}" style="max-width:350px" alt=""></a>
-  
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          
-            <span class="badge text-bg-warning">Admin Settings</span>
-         
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Create New
-            </a>
-            <ul class="dropdown-menu bg-info">
-              <li><a class="dropdown-item" href="{% url 'create_joueur'%}">Player</a></li>
-              <li><a class="dropdown-item" href="{% url 'create_team'%}">Team</a></li>
-            
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Update existing
-            </a>
-            <ul class="dropdown-menu bg-info">
-              <li><a class="dropdown-item" href="#">Player</a></li>
-              <li><a class="dropdown-item" href="#">Team</a></li>
-            </ul>
-          </li>
-        </ul>
+
+<nav class="navbar navbar-expand-lg sticky-top py-4 w-100" style="z-index: 100; background-color: black">
+  <div class="container-fluid">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex justify-content-between ms-5" id="navbarSupportedContent">
+      <ul class="navbar-nav mb-2 mb-lg-0 d-flex align-items-center text-uppercase {% if request.path == '/' %} pb-3 {% endif %} fs-5 gap-5" style="width:80%; {% if request.path == '/' %} border-bottom: 3px solid white {% endif %}" >
         <li class="nav-item text-white">
-            <a class="active text-warning" aria-current="page" href="{% url 'home' %}">Log | Out</a>
-          </li>
+          <a class="nav-link active text-warning" aria-current="page" href="{% url 'home' %}">Ultime League 2023 Admin dashboard</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Create New </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'create_joueur'%}">Player</a></li>
+            <li><a class="dropdown-item" href="{% url 'create_team'%}">Team</a></li>
+          </ul>
+        </li>
+  
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Update existing </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'player_editor' %}">Player</a></li>
+            <li><a class="dropdown-item" href="{% url 'team_editor' %}">Team</a></li>
+          </ul>
+        </li>
+        <span class="ms-auto text-white fs-3">Ultimate teams</span>
+      </ul>
+        <div class="logo d-flex">
+          <a class="navbar-brand" href="#"><img src="{% static 'logo/Sans_tUELOGO.png' %}" style="max-width: 80px" alt="" /></a>
+        </div>
+      <div class="nav-item text-white text-end" style="width:10%">
+        <a class="active text-warning nav-link" href="{% url 'home' %}"><i class="fa-solid fa-arrow-right-from-bracket fa-xl"></i></a>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>

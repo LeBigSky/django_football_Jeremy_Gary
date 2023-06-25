@@ -1,0 +1,28 @@
+{% extends 'backend.html' %}
+{% load static %}
+
+{% block content %}
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+  <div class="p-5 text-white position-relative">
+  <video src={% static 'europa.mp4' %} autoplay muted loop style="position: absolute; right: 0; bottom: 0; height:80%; z-index: -1"></video>
+    <div class="container mb-5">
+      <fieldset>
+        <legend class="fs-1 mb-5 text-uppercase fw-bold">Update Player</legend>
+        <form method="post" enctype="multipart/form-data" class="mt-5 w-50 mx-auto">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-warning mt-4">Submit</button>
+          <a href="{% url 'delete_player' joueur.id %}"><button class="btn btn-danger ms-5 mt-4">DELETE</button></a>
+        </form>
+      </fieldset>
+    </div>
+  </div>
+{% endblock %}

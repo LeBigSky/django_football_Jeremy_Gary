@@ -2,88 +2,101 @@
 {% load static %}
 
 {% block content %}
-<section class="position-relative" style="min-height: 100dvh; padding-top: 175px">
-    <video src={% static 'europa.mp4' %} autoplay muted loop style="position: absolute; right:0; bottom:0; width: 100%; height: 100%; object-fit:cover; z-index: -1"></video>
+<section class="position-relative" style="min-height: calc( 100dvh - 142px ); padding-block: 150px">
+    <video src={% static 'europa.mp4' %} autoplay muted loop style="position: absolute; right:0; bottom:0; height: 100%; object-fit:cover; z-index: -1"></video>
 
-    <div class="card mb-3 bg-transparent border-0" style="max-width: 100%; margin-inline: 7rem">
+    <div class="card mb-3 bg-transparent border-0 fs-5" style="max-width: 100%; margin-inline: 7rem">
         <div class="row g-0">
-            <div class="col-md-4" style="height: 650px">
-            <img src="{{joueur.image.url}}" class="img-fluid rounded-start h-100" alt="{{joueur.first_name}} {{joueur.last_name}}" style="height: 100%">
+            <div class="col-md-4" style="max-height: 650px">
+            <img src="{{joueur.image.url}}" class="img-fluid rounded-start h-auto" alt="{{joueur.first_name}} {{joueur.last_name}}" style="max-height: 100%; max-width: 100%">
             </div>
             <div class="col-md-8">
             <div class="card-body">
                 <div class="title d-flex justify-content-between">
-                    <div class="left d-flex gap-4 align-items-center">
-                        <h5 class="card-title text-white fs-1 text-uppercase">{{joueur.first_name}} {{joueur.last_name}}</h5>
-                        <img src="{{joueur.country_of_origin.flag}}" alt="{{joueur.country_of_origin.name}}" height="40px">
+                    <div class="d-flex gap-4 align-items-center">
+                    <a href="{% if joueur.equipe_id %}{% url 'show_team' joueur.equipe_id %}{% else %}{% endif %}"><img src="{% if joueur.equipe %}{{joueur.equipe.image.url}}{% else %}{% static 'logo/freeplayer.png' %}{% endif %}" alt="{{joueur.equipe}}" style="max-height: 7rem"></a>
+                        <h5 class="card-title text-white fs-1 text-uppercase fw-bold mb-0">{{joueur.first_name}} {{joueur.last_name}}</h5>
                         <h5 class="text-white fs-1 text-uppercase">{% if joueur.gender == 'M' %}
                             &#9794;
                             {% else %}
                             &#9792;
-                            {% endif %}</h5>
-                    </div>
-                    <div class="right">
-                        <h5 class="text-white text-uppercase">
-                            {{joueur.role}}
+                            {% endif %}
                         </h5>
+                        <img src="{{joueur.country_of_origin.flag}}" alt="{{joueur.country_of_origin.name}}" height="40px">
+                        <span class="text-uppercase badge {% if joueur.role_id == 1 %} bg-danger
+                        {% elif joueur.role_id == 2 %}
+                        bg-success
+                        {% elif joueur.role_id == 3 %}
+                        bg-primary
+                        {% elif joueur.role_id == 4 %}
+                        bg-warning text-black
+                        {% else %}
+                        bg-secondary
+                        {% endif %}">
+                            {{joueur.role}}
+                        </span>
                     </div>
                 </div>
                     <dl class="d-flex gap-5 mt-5 text-white ">
 
-                        <div class="">
-                            <dt>Age</dt>
+                        <div class="me-5">
+                            <dt class="text-warning">Age</dt>
                             <dd>{{joueur.age}}</dd>
                         </div>
 
-                        <div class="">
-                            <dt>Telephone</dt>
-                            <dd>{{joueur.telephone}}</dd>
+                        <div class="me-5">
+                            <dt class="text-warning">Telephone</dt>
+                            <dd>+ {{joueur.telephone}}</dd>
                         </div>
 
                         <div class="">
-                            <dt>Email</dt>
+                            <dt class="text-warning">Email</dt>
                             <dd>{{joueur.email}}</dd>
                         </div>
 
                     </dl>
-                    <h4 class="mt-5 text-white">Compétences</h4>
+                    <div class="d-flex gap-5">
+                        <h3 class="mt-5 text-warning text-decoration-underline">Compétences
+                        </h3>
+                        <span class="ms-5 mt-5 text-white fs-4 fw-bold text-decoration-none">{{joueur.moyenne}}</span>
+                    </div>
                 <div class="row row-cols-2 text-white">
-                    <div class="left mt-5">
+                    <div class="left mt-3">
                         <dl>
 
                             <div class="">
-                                <dt>Vitesse</dt>
-                                <dd>{{joueur.vitesse}}</dd>
+                                <dt class="text-warning"><i class="fa-solid fa-gauge-high me-2"></i> Vitesse</dt>
+                                <dd class="fw-bold">{{joueur.vitesse}}</dd>
                             </div>
 
                             <div class="">
-                                <dt>Tir</dt>
-                                <dd>{{joueur.tir}}</dd>
+                                <dt class="text-warning"><i class="fa-solid fa-crosshairs me-2"></i> Tir</dt>
+                                <dd class="fw-bold">{{joueur.tir}}</dd>
                             </div>
 
                             <div class="">
-                                <dt>Passes</dt>
-                                <dd>{{joueur.passes}}</dd>
+                                <dt class="text-warning"><i class="fa-solid fa-bullseye me-2"></i> Passes</dt>
+                                <dd class="fw-bold">{{joueur.passes}}</dd>
                             </div>
 
                         </dl>
                     </div>
-                    <div class="right  mt-5">
+                    <div class="right  mt-3">
                         <dl>
 
                             <div class="">
-                                <dt>Dribble</dt>
-                                <dd>{{joueur.dribble}}</dd>
+                                <dt class="text-warning"><i class="fa-solid fa-person-running me-2"></i> Dribble</dt>
+                                <dd class="fw-bold">{{joueur.dribble}}</dd>
                             </div>
 
                             <div class="">
-                                <dt>Défense</dt>
-                                <dd>{{joueur.defense}}</dd>
+                                <dt class="text-warning"><i class="fa-solid fa-shield-halved me-2"></i> Défense</dt>
+                                <dd class="fw-bold">{{joueur.defense}}</dd>
                             </div>
 
                             <div class="">
-                                <dt>Physique</dt>
-                                <dd>{{joueur.physique}}</dd>
+                                <dt class="text-warning"><i class="fa-solid fa-heart me-2"></i> Physique</dt>
+                                <dd class="fw-bold">{{joueur.physique}}</dd>
                             </div>
 
                         </dl>

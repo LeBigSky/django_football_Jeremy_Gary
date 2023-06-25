@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse d-flex justify-content-between ms-5" id="navbarSupportedContent">
       <ul class="navbar-nav mb-2 mb-lg-0 d-flex align-items-center text-uppercase {% if request.path == '/' %} pb-3 {% endif %} fs-5 gap-5" style="width:80%; {% if request.path == '/' %} border-bottom: 3px solid white {% endif %}" >
         <li class="nav-item text-white">
-          <a class="nav-link active text-warning" aria-current="page" href="#">Ultime League 2023</a>
+          <a class="nav-link active text-warning" aria-current="page" href="{% url 'home' %}">Ultime League 2023</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -30,9 +30,9 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Ultime Leagues </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">League Female</a></li>
-            <li><a class="dropdown-item" href="#">League Male</a></li>
-            <li><a class="dropdown-item" href="#">League Mixte</a></li>
+            <li><a class="dropdown-item" href="{% url 'female_league' %}">League Female</a></li>
+            <li><a class="dropdown-item" href="{% url 'male_league' %}">League Male</a></li>
+            <li><a class="dropdown-item" href="{% url 'mixte_league' %}">League Mixte</a></li>
           </ul>
         </li>
         <span class="ms-auto text-white fs-3">Ultimate teams</span>
@@ -41,7 +41,7 @@
           <a class="navbar-brand" href="#"><img src="{% static 'logo/Sans_tUELOGO.png' %}" style="max-width: 80px" alt="" /></a>
         </div>
       <div class="nav-item text-white text-end" style="width:10%">
-        <a class="active text-warning nav-link" href="{% url 'back' %}">Log | In</a>
+        <a class="active text-warning nav-link" href="{% url 'back' %}"><i class="fa-solid fa-arrow-right-to-bracket fa-xl"></i></a>
       </div>
     </div>
   </div>

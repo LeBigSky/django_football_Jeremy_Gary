@@ -9,9 +9,7 @@
     </video>
 </section>
 
-    <div class="equipes position-relative">
-        <video src={% static 'europa.mp4' %} autoplay muted loop style="position: absolute; right: 0; bottom: 0; height:100%; z-index: -1"></video>
-        <section style="background-image: url({% static 'leftduck.png' %}); background-size: contain; background-repeat: no-repeat; padding-block: 5rem;" class="my-5 p-5 position-relative">
+    <section style="background-image: url({% static 'rightduck.png' %}); background-size: contain; background-repeat: no-repeat; background-position: top right; padding-block: 5rem;" class="p-5 position-relative">
         <div class="container d-flex justify-content-evenly fw-bold py-5">
             <div class="d-flex flex-column position-relative">
                 <i class="fa-solid fa-futbol position-absolute display-3 end-0 text-secondary"></i>
@@ -32,143 +30,10 @@
         </div>
     </section>
 
-        <section id="full-teams" class="p-5">
-            <h1 class="text-white ms-5 mt-4 mb-5 text-uppercase">Equipes remplies</h1>
-            <div class="container pt-5 mb-5">
-                <div class="row row-cols-md-5 d-flex justify-content-evenly mx-0">
-                {% for equipe in equipes_remplies %}
-                    <a href="{% url 'show_team' equipe.id %}" class="text-decoration-none">
-                        <div class="equipe text-center d-flex flex-column align-items-center">
-                            <img src="{{equipe.image.url}}" alt="" style="width: 60%; filter:drop-shadow(0 0 5px white);">
-                            <span style="font-weight: bold; font-size: 1.2rem; text-shadow: 0 0 5px black" class="mt-4 text-light">{{equipe.name}}</span>
-                        </div>
-                    </a>
-                    {% empty %}
-                    <h3 class="text-white">Aucune équipe remplie</h3>
-                {% endfor %}
-                </div>
-            </div>
-        </section>
-    
-        <section id="not-full-teams" class="p-5">
-            <h1 class="text-white ms-5 mt-4 mb-5 text-uppercase">Equipes non remplies</h1>
-            <div class="container pt-5 mb-5">
-                <div class="row row-cols-md-5 d-flex justify-content-evenly mx-0">
-                {% for equipe in equipes_non_remplies %}
-                    <a href={% url 'show_team' equipe.id %} class="text-decoration-none">
-                        <div class="equipe text-center position-relative pb-5">
-                            <div class="equipe text-center d-flex flex-column align-items-center">
-                                <img src="{{equipe.image.url}}" alt="" style="width: 60%;  filter:drop-shadow(0 0 5px white);">
-                                <span style="font-weight: bold; font-size: 1.2rem; text-shadow: 0 0 5px black" class="mt-4 text-light">{{equipe.name}}</span>
-                            </div>
-                        </div>
-                    </a>
-                {% endfor %}
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div class="position-relative">
-        <video src={% static 'European_Union_Flag.mp4' %} autoplay muted loop style="position: absolute; z-index: -1; width: 100%; height: 100%; object-fit: cover"></video>
-        <section id="european-teams" class="p-5 position-relative h-100 w-100">
-            <h1 class="text-white ms-5 mt-4 mb-5 text-uppercase">Equipes européenes</h1>
-            <div class="container pt-5 mb-5">
-                <div class="row row-cols-md-5 d-flex justify-content-evenly mx-0">
-                {% for equipe in equipes_euro %}
-                    <a href="{% url 'show_team' equipe.id %}" class="text-decoration-none">
-                        <div class="equipe text-center d-flex flex-column align-items-center">
-                            <img src="{{equipe.image.url}}" alt="" style="width: 60%;  filter:drop-shadow(0 0 5px white);">
-                            <span style="font-weight: bold; font-size: 1.2rem; text-shadow: 0 0 5px black" class="mt-4 text-light">{{equipe.name}}</span>
-                        </div>
-                    </a>
-                {% endfor %}
-                </div>
-            </div>
-        </section>
-    </div>
-    <div class="position-relative">
-    <video src={% static 'onu_Flag.mp4' %} autoplay muted loop style="position: absolute; z-index: -1; width: 100%; height: 100%; object-fit: cover"></video>
-        <section id="not-european-teams" class="p-5">
-            <h1 class="text-white ms-5 mt-4 mb-5 text-uppercase">Equipes hors Europe</h1>
-            <div class="container">
-                <div class="row row-cols-md-5 d-flex justify-content-evenly mx-0 py-5">
-                {% for equipe in equipes_autre %}
-                    <a href="{% url 'show_team' equipe.id %}" class="text-decoration-none">
-                        <div class="equipe text-center d-flex flex-column align-items-center my-5">
-                            <img src="{{equipe.image.url}}" alt="" style="width: 60%;  filter:drop-shadow(0 0 5px white);">
-                            <span style="font-weight: bold; font-size: 1.2rem; text-shadow: 0 0 5px black" class="mt-4 text-light">{{equipe.name}}</span>
-                        </div>
-                    </a>
-                {% endfor %}
-                </div>
-            </div>
-        </section>
-    </div>
-
-<div style="background-image: url({% static 'logo/fondgradientpics.png' %}); background-size: cover">
-    <section id="free-players" class="p-5">
-        <h1 class="my-5 text-uppercase"><img src="{% static 'logo/freeplayer.png' %}" alt="" class="me-4" style="max-width: 100px">Joueurs et joueuses libres</h1>
-        <div class="row row-cols-5 d-flex justify-content-evenly mx-0">
-        {% for joueur in joueurs_libres %}
-        <!-- *** fut-player-card ***-->
-        <a href="{% url 'show_player' joueur.id %}" class="show-player" style="width: fit-content">
-            <div class="fut-player-card">
-                <!-- Player Card Top-->
-                <div class="player-card-top">
-                    <div class="player-master-info">
-                        <div class="player-rating"><span>{{joueur.moyenne}}</span></div>
-                        <div class="player-position"><span>{{joueur.role}}</span></div>
-                        <div class="player-club">
-                            <img src={% if joueur.equipe %}
-                            "{{joueur.equipe.image.url}}"
-                            {% else %}
-                            "{% static 'logo/freeplayer.png' %}"
-                            {% endif %}
-                            alt="{{joueur.equipe}}" draggable="false" />
-                        </div>
-                        <div class="player-nation"><img src="{{joueur.country_of_origin.flag}}" alt="{{joueur.country_of_origin.name}}"></div>
-                    </div>
-                    <div class="player-picture"><img src="{{joueur.image.url}}"  alt="{{joueur.first_name}} {{joueur.last_name}}" draggable="false" style="object-fit:cover; transform:scale(1.2); object-position: top" />
-                    </div>
-                </div><!-- Player Card Bottom-->
-                <div class="player-card-bottom">
-                    <div class="player-info">
-                        <!-- Player Name-->
-                        <div class="player-name"><span>{{joueur.first_name|truncatechars:12}} {{joueur.last_name}}</span></div><!-- Player Features-->
-                        <div class="player-features">
-                            <div class="player-features-col"><span>
-                                    <div class="player-feature-value">{{joueur.vitesse}}</div>
-                                    <div class="player-feature-title">PAC</div>
-                                </span><span>
-                                    <div class="player-feature-value">{{joueur.tir}}</div>
-                                    <div class="player-feature-title">SHO</div>
-                                </span><span>
-                                    <div class="player-feature-value">{{joueur.passes}}</div>
-                                    <div class="player-feature-title">PAS</div>
-                                </span></div>
-                            <div class="player-features-col"><span>
-                                    <div class="player-feature-value">{{joueur.dribble}}</div>
-                                    <div class="player-feature-title">DRI</div>
-                                </span><span>
-                                    <div class="player-feature-value">{{joueur.defense}}</div>
-                                    <div class="player-feature-title">DEF</div>
-                                </span><span>
-                                    <div class="player-feature-value">{{joueur.physique}}</div>
-                                    <div class="player-feature-title">PHY</div>
-                                </span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-        {% endfor %}
-    </div>
-    </section>
-
+    <div style="background-image: url({% static 'logo/fondgradientpics.png' %}); background-size: cover">
     <section id="not-free-players" class="p-5">
-        <h1 class="my-5 text-uppercase"><img src="{% static 'logo/notfreeplayer.png' %}" alt="" class="me-4" style="max-width: 100px">Joueurs et joueuses avec équipe</h1>
-        <div class="row row-cols-5 d-flex justify-content-evenly mx-0">
+        <h1 class="mb-5 mt-4 text-uppercase"><img src="{% static 'logo/notfreeplayer.png' %}" alt="" class="me-4" style="max-width: 100px">Joueurs et joueuses avec équipe</h1>
+        <div class="row row-cols-5 d-flex justify-content-evenly mx-0 pb-5">
         {% for joueur in joueurs_non_libres %}
         <a href="{% url 'show_player' joueur.id %}" class="show-player" style="width: fit-content">
             <!-- *** fut-player-card ***-->
@@ -226,7 +91,147 @@
             {% endfor %}
         </div>
     </section>
+    </div>
 
+    <div class="equipes position-relative">
+    <video src={% static 'europa.mp4' %} autoplay muted loop style="position: absolute; right: 0; bottom: 0; height:100%; z-index: -1"></video>
+        <section id="full-teams" class="p-5">
+            <h1 class="text-white ms-5 mt-4 mb-5 text-uppercase">Equipes remplies</h1>
+            <div class="container pt-5 mb-5">
+                <div class="row row-cols-md-5 d-flex justify-content-evenly mx-0">
+                {% for equipe in equipes_remplies %}
+                    <a href="{% url 'show_team' equipe.id %}" class="text-decoration-none">
+                        <div class="equipe text-center d-flex flex-column align-items-center">
+                            <img src="{{equipe.image.url}}" alt="" style="width: 60%; filter:drop-shadow(0 0 5px white);">
+                            <span style="font-weight: bold; font-size: 1.2rem; text-shadow: 0 0 5px black" class="mt-4 text-light">{{equipe.name}}</span>
+                        </div>
+                    </a>
+                    {% empty %}
+                    <h3 class="text-white">Aucune équipe remplie</h3>
+                {% endfor %}
+                </div>
+            </div>
+        </section>
+    
+        <section id="not-full-teams" class="p-5">
+            <h1 class="text-white ms-5 mt-4 mb-5 text-uppercase">Equipes non remplies</h1>
+            <div class="container pt-5 mb-5">
+                <div class="row row-cols-md-5 d-flex justify-content-evenly mx-0">
+                {% for equipe in equipes_non_remplies %}
+                    <a href={% url 'show_team' equipe.id %} class="text-decoration-none">
+                        <div class="equipe text-center position-relative pb-5">
+                            <div class="equipe text-center d-flex flex-column align-items-center">
+                                <img src="{{equipe.image.url}}" alt="" style="width: 60%;  filter:drop-shadow(0 0 5px white);">
+                                <span style="font-weight: bold; font-size: 1.2rem; text-shadow: 0 0 7px black" class="mt-4 text-light">{{equipe.name}}</span>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div style="background-image: url({% static 'logo/fondgradientpics.png' %}); background-size: cover">
+    <section id="free-players" class="p-5">
+        <h1 class="mb-5 mt-4 text-uppercase"><img src="{% static 'logo/freeplayer.png' %}" alt="" class="me-4" style="max-width: 100px">Joueurs et joueuses libres</h1>
+        <div class="row row-cols-5 d-flex justify-content-evenly mx-0 pb-5">
+        {% for joueur in joueurs_libres %}
+        <!-- *** fut-player-card ***-->
+        <a href="{% url 'show_player' joueur.id %}" class="show-player" style="width: fit-content">
+            <div class="fut-player-card">
+                <!-- Player Card Top-->
+                <div class="player-card-top">
+                    <div class="player-master-info">
+                        <div class="player-rating"><span>{{joueur.moyenne}}</span></div>
+                        <div class="player-position"><span>{{joueur.role}}</span></div>
+                        <div class="player-club">
+                            <img src={% if joueur.equipe %}
+                            "{{joueur.equipe.image.url}}"
+                            {% else %}
+                            "{% static 'logo/freeplayer.png' %}"
+                            {% endif %}
+                            alt="{{joueur.equipe}}" draggable="false" />
+                        </div>
+                        <div class="player-nation"><img src="{{joueur.country_of_origin.flag}}" alt="{{joueur.country_of_origin.name}}"></div>
+                    </div>
+                    <div class="player-picture"><img src="{{joueur.image.url}}"  alt="{{joueur.first_name}} {{joueur.last_name}}" draggable="false" style="object-fit:cover; transform:scale(1.2); object-position: top" />
+                    </div>
+                </div><!-- Player Card Bottom-->
+                <div class="player-card-bottom">
+                    <div class="player-info">
+                        <!-- Player Name-->
+                        <div class="player-name"><span>{{joueur.first_name|truncatechars:12}} {{joueur.last_name}}</span></div><!-- Player Features-->
+                        <div class="player-features">
+                            <div class="player-features-col"><span>
+                                    <div class="player-feature-value">{{joueur.vitesse}}</div>
+                                    <div class="player-feature-title">PAC</div>
+                                </span><span>
+                                    <div class="player-feature-value">{{joueur.tir}}</div>
+                                    <div class="player-feature-title">SHO</div>
+                                </span><span>
+                                    <div class="player-feature-value">{{joueur.passes}}</div>
+                                    <div class="player-feature-title">PAS</div>
+                                </span></div>
+                            <div class="player-features-col"><span>
+                                    <div class="player-feature-value">{{joueur.dribble}}</div>
+                                    <div class="player-feature-title">DRI</div>
+                                </span><span>
+                                    <div class="player-feature-value">{{joueur.defense}}</div>
+                                    <div class="player-feature-title">DEF</div>
+                                </span><span>
+                                    <div class="player-feature-value">{{joueur.physique}}</div>
+                                    <div class="player-feature-title">PHY</div>
+                                </span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    </section>
+    </div>
+
+
+    <div class="position-relative">
+    <video src={% static 'europa.mp4' %} autoplay muted loop style="position: absolute; right: 0; bottom: 0; height:70%; z-index: -1"></video>
+        <section id="european-teams" class="p-5 position-relative h-100 w-100">
+            <h1 class="text-white ms-5 mt-4 mb-5 text-uppercase">Equipes européenes</h1>
+            <div class="container pt-5 mb-5">
+                <div class="row row-cols-md-5 d-flex justify-content-evenly mx-0">
+                {% for equipe in equipes_euro %}
+                    <a href="{% url 'show_team' equipe.id %}" class="text-decoration-none">
+                        <div class="equipe text-center d-flex flex-column align-items-center">
+                            <img src="{{equipe.image.url}}" alt="" style="width: 60%;  filter:drop-shadow(0 0 5px white);">
+                            <span style="font-weight: bold; font-size: 1.2rem; text-shadow: 0 0 7px black" class="mt-4 text-light">{{equipe.name}}</span>
+                        </div>
+                    </a>
+                {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section id="not-european-teams" class="p-5">
+            <h1 class="text-white ms-5 mt-4 mb-5 text-uppercase">Equipes hors Europe</h1>
+            <div class="container">
+                <div class="row row-cols-md-5 d-flex justify-content-evenly mx-0 py-5">
+                {% for equipe in equipes_autre %}
+                    <a href="{% url 'show_team' equipe.id %}" class="text-decoration-none">
+                        <div class="equipe text-center d-flex flex-column align-items-center my-5">
+                            <img src="{{equipe.image.url}}" alt="" style="width: 60%;  filter:drop-shadow(0 0 5px white);">
+                            <span style="font-weight: bold; font-size: 1.2rem; text-shadow: 0 0 7px black" class="mt-4 text-light">{{equipe.name}}</span>
+                        </div>
+                    </a>
+                {% endfor %}
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+    <div style="background-image: url({% static 'logo/fondgradientpics.png' %}); background-size: cover">
     <section id="free-women" class="p-5">
         <h1 class="my-5 text-uppercase"><img src="{% static 'logo/freeplayer.png' %}" alt="" class="me-4" style="max-width: 100px">Joueuses sans équipe</h1>
         <div class="row row-cols-5 d-flex justify-content-evenly mx-0">

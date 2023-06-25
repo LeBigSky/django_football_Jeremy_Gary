@@ -1,3 +1,13 @@
+@font-face {
+    font-family: "UEFA";
+    src: url(./UEFASupercup-Regular.ttf);
+}
+
+body {
+    font-family: "UEFA";
+    background-color: black;
+}
+
 /* *** fut-player-card styles *** */
 .fut-player-card {
     position: relative;
