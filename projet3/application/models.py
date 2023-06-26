@@ -39,7 +39,7 @@ class Role(models.Model):
 class Equipe(models.Model):
     name = models.CharField(max_length=100)
     max_players = models.PositiveIntegerField(default=14)
-    country = CountryField(max_length=100)
+    country = CountryField(max_length=100, countries_flag_url="https://www.worldatlas.com/r/w425/img/flag/{code}-flag.jpg")
     image = models.ImageField(upload_to=generate_unique_filename)
     continent = models.ForeignKey(Continent, on_delete=models.CASCADE)
     man= models.BooleanField(null=True)

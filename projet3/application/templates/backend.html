@@ -8,7 +8,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'style.css' %}">
-    <title>Document</title>
+    <script src="https://kit.fontawesome.com/508b7484b8.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="{% static 'logo/Sans_tUELOGO.png' %}" type="image/png">
+    <title>Admin Dashboard</title>
 </head>
 <body>
     
@@ -23,5 +25,6 @@
     </ul>
 {% endif %}
     {% endblock content %}
+    {% include "app/partials/footer.html" %}
 </body>
 </html>
