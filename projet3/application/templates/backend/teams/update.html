@@ -20,8 +20,8 @@
           {% csrf_token %}
           {{ form.as_p }}
           <button type="submit" class="btn btn-warning mt-4">Submit</button>
-          <a href="{% url 'delete_team' team.id %}"><button class="btn btn-danger ms-5 mt-4">DELETE</button></a>
         </form>
+        <a href="{% url 'delete_team' team.id %}"><button class="btn btn-danger ms-5 mt-4">DELETE</button></a>
       </fieldset>
     </div>
   </div>
