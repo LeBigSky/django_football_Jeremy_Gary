@@ -9,3 +9,5 @@ soupsieve==2.4.1
 sqlparse==0.4.4
 typing_extensions==4.6.3
 tzdata==2023.3
+gunicorn==21.2.0
+whitenoise==6.5.0
